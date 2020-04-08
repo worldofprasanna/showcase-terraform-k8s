@@ -4,6 +4,8 @@
 
 > Infrastructure repository for deploying the cat app
 
+If you want to know about the technologies used, please refer to [Architecture](Architecture.md)
+
 ## Table of Contents
 
 - [screener](#screener)
