@@ -1,0 +1,28 @@
+image:
+  name: hashicorp/terraform:light
+
+stages:
+  - validate
+  - unit_test
+  - plan
+  - apply
+
+validate:
+  stage: test
+  script:
+    - echo "Validate the terraform files"
+
+unit_test:
+  stage: test
+  script:
+    - echo "Run Unit tests for terraform files"
+
+plan:
+  stage: plan
+  script:
+    - echo "Run plan stage of terraform"
+
+apply:
+  stage: test
+  script:
+    - echo "Apply the terraform changes to production"
