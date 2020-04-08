@@ -8,12 +8,12 @@ stages:
   - apply
 
 validate:
-  stage: test
+  stage: validate
   script:
     - echo "Validate the terraform files"
 
 unit_test:
-  stage: test
+  stage: unit_test
   script:
     - echo "Run Unit tests for terraform files"
 
@@ -23,6 +23,8 @@ plan:
     - echo "Run plan stage of terraform"
 
 apply:
-  stage: test
+  stage: apply
   script:
     - echo "Apply the terraform changes to production"
+  dependencies:
+    - plan
