@@ -1,2 +1,4 @@
 infrastructure_provisioning/.terraform/
 infrastructure_provisioning/terraform.tfstate
+terraform.tfstate.backup
+.terraform.tfstate.lock.info
