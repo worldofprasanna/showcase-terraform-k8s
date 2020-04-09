@@ -1,0 +1,41 @@
+replicaCount: 1
+
+image:
+  repository: <aws-account-id>.dkr.ecr.us-east-1.amazonaws.com/cats-web
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+apiHost: "http://cats-api:8081"
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: cats-web-service
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: false
+  annotations: {}
+
+  hosts:
+    - host: cats-web.local
+      paths: []
+  tls: []
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
