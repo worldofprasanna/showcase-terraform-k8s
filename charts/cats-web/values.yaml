@@ -8,7 +8,7 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-apiHost: "http://cats-api:8081"
+apiHost: "http://cats-api"
 
 serviceAccount:
   create: true
@@ -21,7 +21,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 8080
+  port: 80
 
 ingress:
   enabled: false
