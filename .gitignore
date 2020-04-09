@@ -1,0 +1,2 @@
+infrastructure_provisioning/.terraform/
+infrastructure_provisioning/terraform.tfstate
