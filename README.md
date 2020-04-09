@@ -6,6 +6,8 @@
 
 If you want to know about the technologies used, please refer to [Architecture](Architecture.md)
 
+Note: CircleCI is used for CI/CD.
+
 ## Table of Contents
 
 - [screener](#screener)
