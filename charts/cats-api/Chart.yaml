@@ -1,0 +1,9 @@
+apiVersion: v2
+name: cats-api
+description: Helm chart to deploy k8s resources for api
+
+type: application
+
+version: 0.1.0
+
+appVersion: latest
