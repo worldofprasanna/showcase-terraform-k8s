@@ -18,13 +18,23 @@ variable "sg_name" {
   description = "Tag Name for sg"
 }
 
-variable "public_subnet_cidr" {
+variable "public_subnet1_cidr" {
   default     = "10.0.1.0/24"
   description = "Public Subnet"
 }
 
-variable "public_subnet_az" {
+variable "public_subnet2_cidr" {
+  default     = "10.0.64.0/24"
+  description = "Public Subnet"
+}
+
+variable "public_subnet1_az" {
   default     = "us-east-1a"
+  description = "Public Subnet Availability Zone"
+}
+
+variable "public_subnet2_az" {
+  default     = "us-east-1b"
   description = "Public Subnet Availability Zone"
 }
 

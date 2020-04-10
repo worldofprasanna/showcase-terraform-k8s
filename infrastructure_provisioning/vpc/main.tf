@@ -29,11 +29,23 @@ resource "aws_route_table" "cats" {
 
 # Create public subnet
 
-resource "aws_subnet" "public" {
+resource "aws_subnet" "public1" {
     vpc_id = "${aws_vpc.cats.id}"
 
-    cidr_block = "${var.public_subnet_cidr}"
-    availability_zone = "${var.public_subnet_az}"
+    cidr_block = "${var.public_subnet1_cidr}"
+    availability_zone = "${var.public_subnet1_az}"
+
+    tags = map(
+      "Name", "Cats Public Subnet",
+      "kubernetes.io/cluster/${var.cluster-name}", "shared",
+    )
+}
+
+resource "aws_subnet" "public2" {
+    vpc_id = "${aws_vpc.cats.id}"
+
+    cidr_block = "${var.public_subnet2_cidr}"
+    availability_zone = "${var.public_subnet2_az}"
 
     tags = map(
       "Name", "Cats Public Subnet",
@@ -56,10 +68,16 @@ resource "aws_route_table" "public" {
 }
 
 # Attach public route table to public subnet
-resource "aws_route_table_association" "public" {
-    subnet_id = "${aws_subnet.public.id}"
+resource "aws_route_table_association" "public1" {
+    subnet_id = "${aws_subnet.public1.id}"
     route_table_id = "${aws_route_table.public.id}"
 }
+
+resource "aws_route_table_association" "public2" {
+    subnet_id = "${aws_subnet.public2.id}"
+    route_table_id = "${aws_route_table.public.id}"
+}
+
 
 # Create NAT Instance in public subnet
 resource "aws_security_group" "nat" {
@@ -93,7 +111,7 @@ resource "aws_instance" "nat" {
     availability_zone = "us-east-1a"
     instance_type = "t2.micro"
     vpc_security_group_ids = ["${aws_security_group.nat.id}"]
-    subnet_id = "${aws_subnet.public.id}"
+    subnet_id = "${aws_subnet.public1.id}"
     associate_public_ip_address = true
     source_dest_check = false
 
