@@ -38,7 +38,12 @@ variable "private_subnet2_cidr" {
   description = "Private Subnet"
 }
 
-variable "private_subnet_az" {
+variable "private_subnet1_az" {
+  default     = "us-east-1a"
+  description = "Public Subnet Availability Zone"
+}
+
+variable "private_subnet2_az" {
   default     = "us-east-1b"
   description = "Public Subnet Availability Zone"
 }
