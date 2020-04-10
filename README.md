@@ -26,6 +26,8 @@ brew install terraform
 
 ## Usage
 
+Check the Terraform Guide to run the scripts [here](TerraformGuide.md)
+
 1. To plan the infrastructure,
 ```
 terraform plan
