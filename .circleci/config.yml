@@ -1,0 +1,53 @@
+version: 2
+jobs:
+  validate_terraform_scripts:
+    docker:
+      - image: hashicorp/terraform:light
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Validate Terraform scripts
+          command: |
+            echo "Validating the terraform scripts"
+  validate_helm_charts:
+    docker:
+      - image: alpine/helm:latest
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Validate helm charts
+          command: |
+            echo "Validating helm charts"
+  publish_helm_charts:
+    docker:
+      - image: alpine/helm:latest
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Package and push helm charts
+          command: |
+            ./build_scripts/package_helm_charts.sh api
+            ./build_scripts/package_helm_charts.sh web
+workflows:
+  version: 2
+  cats_pipeline:
+    jobs:
+      - validate_terraform_scripts
+      - validate_helm_charts
+      - hold_for_approval:
+          type: approval
+          requires:
+            - validate_terraform_scripts
+            - validate_helm_charts
+          filters:
+            branches:
+              only: master
+      - publish_helm_charts:
+          requires:
+            - hold_for_approval
+          filters:
+            branches:
+              only: master
