@@ -29,8 +29,8 @@ jobs:
       - run:
           name: Package and push helm charts
           command: |
-            ./build_scripts/package_helm_charts.sh api
-            ./build_scripts/package_helm_charts.sh web
+            sh build_scripts/package_helm_charts.sh api
+            sh build_scripts/package_helm_charts.sh web
 workflows:
   version: 2
   cats_pipeline:
