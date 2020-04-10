@@ -112,7 +112,7 @@ resource "aws_subnet" "private1" {
     vpc_id = "${aws_vpc.cats.id}"
 
     cidr_block = "${var.private_subnet1_cidr}"
-    availability_zone = "${var.private_subnet_az}"
+    availability_zone = "${var.private_subnet1_az}"
 
     tags = {
         Name = "Cats Private Subnet 1"
@@ -123,7 +123,7 @@ resource "aws_subnet" "private2" {
     vpc_id = "${aws_vpc.cats.id}"
 
     cidr_block = "${var.private_subnet2_cidr}"
-    availability_zone = "${var.private_subnet_az}"
+    availability_zone = "${var.private_subnet2_az}"
 
     tags = {
         Name = "Cats Private Subnet 2"
@@ -184,6 +184,13 @@ resource "aws_security_group" "web" {
         to_port = 5432
         protocol = "tcp"
         cidr_blocks = ["${var.private_subnet1_cidr}", "${var.private_subnet2_cidr}"]
+    }
+
+    egress {
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
     }
 
     vpc_id = "${aws_vpc.cats.id}"
