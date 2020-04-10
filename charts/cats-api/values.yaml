@@ -7,7 +7,7 @@ image:
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-dbUrl: postgres://postgres:hTY4gYAaaJ@postgres-postgresql/postgres
+dbUrl: postgres://username:password@machine/database
 
 serviceAccount:
   create: true
