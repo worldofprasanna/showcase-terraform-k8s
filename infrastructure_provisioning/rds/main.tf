@@ -1,5 +1,5 @@
 # Create RDS
-resource "aws_db_instance" "default" {
+resource "aws_db_instance" "cats" {
   identifier             = "cats"
   allocated_storage      = "${var.storage}"
   engine                 = "postgres"
