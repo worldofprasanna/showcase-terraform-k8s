@@ -43,6 +43,9 @@ terraform apply plan.out
 cd infrastructure_provisioning/helm_charts
 terraform plan -out plan.out -var-file=stg.tfvars
 terraform apply plan.out
+
+# Initialise the repository for helm charts
+./init_repo.sh
 ```
 
 These steps would create the entire infrastructure.
