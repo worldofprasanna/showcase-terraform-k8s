@@ -9,17 +9,14 @@ variable "instance_class" {
 }
 
 variable "security_group_id" {
-  default = "sg-03b4d0becda436dab"
   type    = string
 }
 
 variable "private_subnet1_id" {
-  default = "subnet-0e0276ecbe027c58e"
   type    = string
 }
 
 variable "private_subnet2_id" {
-  default = "subnet-0ccebf175c20db413"
   type    = string
 }
 
