@@ -19,7 +19,7 @@ function install() {
 
   cd $resource
   terraform plan -out plan.out -var-file="../secrets/$env.tfvars" -var-file="../secrets/$env.auto.tfvars"
-  echo "Please verify the plan and type yes"
+  echo "Please verify the plan for $resource and type 'yes'"
   read confirmation
   if [[ $confirmation == 'yes' ]]
   then

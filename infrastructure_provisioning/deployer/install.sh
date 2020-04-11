@@ -20,7 +20,7 @@ fi
 if [[ $resource == 'all' ]]
 then
   # Clear out the environment specific generated file
-  echo "" > "../secrets/$env.auto.tfvars"
+  echo "" > "secrets/$env.auto.tfvars"
   for r in "${available_resources[@]}"
   do
     if [[ $r == 'all' ]]
@@ -29,6 +29,7 @@ then
     else
       install $r $env
     fi
+    cd ../
   done
   echo "completed all the resources provisioning"
 else
