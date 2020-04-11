@@ -4,6 +4,5 @@ variable "aws_region" {
 }
 
 variable "environment" {
-  default = "stg"
   type = string
 }
