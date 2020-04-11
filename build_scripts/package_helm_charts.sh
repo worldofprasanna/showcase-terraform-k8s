@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [[ $# -lt 1 ]]
 then
   echo "Usage: ./build_scripts/package_helm_charts.sh <api | web>"
@@ -15,7 +17,6 @@ echo "Package the helm chart for $service"
 chart_name="cats-$service"
 helm package "charts/$chart_name" -d packaged_charts/
 
-result=`helm plugin list | grep s3`
 mkdir -p ~/.aws
 cat <<EOT >> ~/.aws/config
 [default]
