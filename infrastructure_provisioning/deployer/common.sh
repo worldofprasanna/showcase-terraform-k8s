@@ -18,13 +18,17 @@ function install() {
   check_env $resource $env
 
   cd $resource
-  terraform plan -out plan.out -var-file="../secrets/$env.tfvars"
+  terraform plan -out plan.out -var-file="../secrets/$env.tfvars" -var-file="../secrets/$env.auto.tfvars"
   echo "Please verify the plan and type yes"
   read confirmation
   if [[ $confirmation == 'yes' ]]
   then
     echo "Thank you. Applying the changes"
     terraform apply plan.out
+    if [[ $resource != 'eks' ]]
+    then
+      terraform output >> "../secrets/${env}.auto.tfvars"
+    fi
   else
     echo "Ok. Operation cancelled"
     return 1
