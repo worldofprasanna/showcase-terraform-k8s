@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 if [[ $# -lt 1 ]]
 then
   echo "Usage: ./build_scripts/package_helm_charts.sh <api | web>"
