@@ -8,3 +8,4 @@ test_tf/
 **/*.tfstate
 charts/packaged_charts/
 packaged_charts/
+infrastructure_provisioning/secrets/stg.tfvars
