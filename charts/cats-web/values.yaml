@@ -3,6 +3,7 @@ replicaCount: 1
 image:
   repository: <aws-account-id>.dkr.ecr.us-east-1.amazonaws.com/cats-web
   pullPolicy: IfNotPresent
+  version: test
 
 imagePullSecrets: []
 nameOverride: ""

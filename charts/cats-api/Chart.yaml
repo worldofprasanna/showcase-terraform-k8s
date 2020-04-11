@@ -4,6 +4,6 @@ description: Helm chart to deploy k8s resources for api
 
 type: application
 
-version: 1.0.1
+version: 1.0.2
 
 appVersion: latest
