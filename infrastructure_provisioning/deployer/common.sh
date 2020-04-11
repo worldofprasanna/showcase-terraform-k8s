@@ -51,5 +51,5 @@ function destroy() {
   check_env $resource $env
 
   cd $resource
-  terraform destroy -var-file="../secrets/$env.tfvars"
+  terraform destroy -var-file="../secrets/$env.tfvars" -var-file="../secrets/$env.auto.tfvars"
 }

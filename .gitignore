@@ -9,3 +9,4 @@ test_tf/
 charts/packaged_charts/
 packaged_charts/
 infrastructure_provisioning/secrets/stg.tfvars
+infrastructure_provisioning/secrets/*.auto.tfvars
