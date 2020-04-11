@@ -9,6 +9,7 @@ then
 fi
 
 service=$1
+export REGION="us-east-1"
 
 mkdir -p packaged_charts
 
@@ -16,12 +17,17 @@ echo "Package the helm chart for $service"
 chart_name="cats-$service"
 helm package "charts/$chart_name" -d packaged_charts/
 
-echo "Install the helm s3 plugin"
 result=`helm plugin list | grep s3`
 if [[ $? -eq 1 ]]
 then
+  echo "Install the helm s3 plugin"
   apk add git bash
   helm plugin install https://github.com/hypnoglow/helm-s3.git
+  mkdir ~/.aws
+  cat <<EOT >> ~/.aws/config
+  [default]
+  region=us-east-1
+EOT
   helm s3 init s3://stg-cats-helm-chart/charts
 fi
 
