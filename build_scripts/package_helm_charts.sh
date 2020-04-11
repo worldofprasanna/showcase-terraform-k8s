@@ -10,8 +10,24 @@ fi
 
 service=$1
 
+mkdir -p packaged_charts
+
 echo "Package the helm chart for $service"
+chart_name="cats-$service"
+helm package "charts/$chart_name" -d packaged_charts/
+
 echo "Install the helm s3 plugin"
+result=`helm plugin list | grep s3`
+if [[ $? -eq 1 ]]
+then
+  helm plugin install https://github.com/hypnoglow/helm-s3.git
+fi
+
 echo "Initialize the helm chart repository"
+helm s3 init s3://stg-cats-helm-chart/charts
+helm repo add cats-charts s3://stg-cats-helm-chart/charts
+
 echo "Push the charts to s3 bucket"
+helm s3 push packaged_charts/$chart_name-*.tgz cats_charts
+
 echo "Task completed"

@@ -7,3 +7,4 @@ test_tf/
 **/plan.out
 **/*.tfstate
 charts/packaged_charts/
+packaged_charts/
