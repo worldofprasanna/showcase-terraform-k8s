@@ -8,7 +8,7 @@ resource "aws_db_instance" "cats" {
   name                   = "${var.environment}_catsdb"
   username               = "${var.db_username}"
   password               = "${var.db_password}"
-  vpc_security_group_ids = ["${var.security_group_id}"]
+  vpc_security_group_ids = ["${var.db_security_group_id}"]
   db_subnet_group_name   = "${aws_db_subnet_group.cats.id}"
   skip_final_snapshot    = "true"
 }

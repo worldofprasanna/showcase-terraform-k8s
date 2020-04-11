@@ -8,7 +8,7 @@ variable "instance_class" {
   type    = string
 }
 
-variable "security_group_id" {
+variable "db_security_group_id" {
   type    = string
 }
 
