@@ -28,13 +28,25 @@ brew install terraform
 
 Check the Terraform Guide to run the scripts [here](TerraformGuide.md)
 
-1. To plan the infrastructure,
+1. To create all the resources from scratch
 ```
-terraform plan
+cd infrastructure_provisioning
+./deployer/install.sh all stg
 ```
-2. To apply the changes,
+2. To create specific resource,
 ```
-terraform apply
+cd infrastructure_provisioning
+./deployer/install.sh <resource> stg
+```
+3. To delete all the resources
+```
+cd infrastructure_provisioning
+./deployer/delete.sh all stg
+```
+4. To delete specific resource
+```
+cd infrastructure_provisioning
+./deployer/delete.sh <resource> stg
 ```
 
 ## Maintainers

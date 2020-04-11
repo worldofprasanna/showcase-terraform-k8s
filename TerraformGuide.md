@@ -4,6 +4,12 @@ This guide will show the steps to be executed in order to provision the whole in
 
 Each resource is placed under its own folder. Reason: I do not want to run few resources always (eg: EKS - as it will incur charges) and I want to destroy it as a whole when I complete my testing.
 
+Now there are scripts to perform these operations, instead of manually going into the folder and doing the operation.
+
+Check the files [infrastructure_provisioning/deployer/install.sh](infrastructure_provisioning/deployer/install.sh) and [infrastructure_provisioning/deployer/delete.sh](infrastructure_provisioning/deployer/delete.sh)
+
+To know about the repository and structure use the below information.
+
 1. Create the VPCs
 ```
 cd infrastructure_provisioning/vpc
