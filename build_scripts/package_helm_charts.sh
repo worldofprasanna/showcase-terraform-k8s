@@ -23,8 +23,8 @@ then
   helm plugin install https://github.com/hypnoglow/helm-s3.git
   mkdir ~/.aws
   cat <<EOT >> ~/.aws/config
-  [default]
-  region=us-east-1
+[default]
+region=us-east-1
 EOT
   helm s3 init s3://stg-cats-helm-chart/charts
 fi
