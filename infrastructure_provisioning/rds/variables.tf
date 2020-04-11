@@ -20,17 +20,21 @@ variable "private_subnet2_id" {
   type    = string
 }
 
-
-variable "username" {
+variable "db_username" {
   default = "postgres"
   type    = string
 }
 
-variable "password" {
+variable "db_password" {
   type    = string
 }
 
 variable "aws_region" {
   default = "us-east-1"
+  type    = string
+}
+
+variable "environment" {
+  default = "stg"
   type    = string
 }
