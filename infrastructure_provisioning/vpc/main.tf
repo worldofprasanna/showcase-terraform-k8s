@@ -1,10 +1,10 @@
 # Main - VPC
 resource "aws_vpc" "cats" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = "${var.vpc_cidr}"
 
   tags = map(
     "Name", "Cats",
-    "kubernetes.io/cluster/${var.cluster-name}", "shared",
+    "kubernetes.io/cluster/${var.environment}-${var.cluster-name}", "shared",
   )
 }
 
@@ -13,17 +13,7 @@ resource "aws_internet_gateway" "cats" {
   vpc_id = aws_vpc.cats.id
 
   tags = {
-    Name = "Cats IGW"
-  }
-}
-
-# Route table entry for public subnet
-resource "aws_route_table" "cats" {
-  vpc_id = aws_vpc.cats.id
-
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.cats.id
+    Name = "${var.environment} Cats IGW"
   }
 }
 
@@ -36,8 +26,8 @@ resource "aws_subnet" "public1" {
     availability_zone = "${var.public_subnet1_az}"
 
     tags = map(
-      "Name", "Cats Public Subnet",
-      "kubernetes.io/cluster/${var.cluster-name}", "shared",
+      "Name", "${var.environment} Cats Public Subnet 1",
+      "kubernetes.io/cluster/${var.environment}-${var.cluster-name}", "shared",
     )
 }
 
@@ -48,8 +38,8 @@ resource "aws_subnet" "public2" {
     availability_zone = "${var.public_subnet2_az}"
 
     tags = map(
-      "Name", "Cats Public Subnet",
-      "kubernetes.io/cluster/${var.cluster-name}", "shared",
+      "Name", "${var.environment} Cats Public Subnet 2",
+      "kubernetes.io/cluster/${var.environment}-${var.cluster-name}", "shared",
     )
 }
 
@@ -63,7 +53,7 @@ resource "aws_route_table" "public" {
     }
 
     tags = {
-        Name = "Cats Public Subnet"
+        Name = "${var.environment} Cats Public Route Table"
     }
 }
 
@@ -101,14 +91,14 @@ resource "aws_security_group" "nat" {
     vpc_id = "${aws_vpc.cats.id}"
 
     tags = {
-        Name = "Cats NAT SG"
+        Name = "${var.environment} Cats NAT SG"
     }
 }
 
 # NAT Instance
 resource "aws_instance" "nat" {
     ami = "ami-058436d7e072250b3" # this is a special ami preconfigured to do NAT
-    availability_zone = "us-east-1a"
+    availability_zone = "${var.nat_availability_zone}"
     instance_type = "t2.micro"
     vpc_security_group_ids = ["${aws_security_group.nat.id}"]
     subnet_id = "${aws_subnet.public1.id}"
@@ -116,7 +106,7 @@ resource "aws_instance" "nat" {
     source_dest_check = false
 
     tags = {
-        Name = "Cats NAT Instance"
+        Name = "${var.environment} Cats NAT Instance"
     }
 }
 
@@ -133,7 +123,7 @@ resource "aws_subnet" "private1" {
     availability_zone = "${var.private_subnet1_az}"
 
     tags = {
-        Name = "Cats Private Subnet 1"
+        Name = "${var.environment} Cats Private Subnet 1"
     }
 }
 
@@ -144,7 +134,7 @@ resource "aws_subnet" "private2" {
     availability_zone = "${var.private_subnet2_az}"
 
     tags = {
-        Name = "Cats Private Subnet 2"
+        Name = "${var.environment} Cats Private Subnet 2"
     }
 }
 
@@ -158,7 +148,7 @@ resource "aws_route_table" "private" {
     }
 
     tags = {
-        Name = "Cats Private Subnet"
+        Name = "${var.environment} Cats Private Subnet"
     }
 }
 
@@ -175,7 +165,7 @@ resource "aws_route_table_association" "private2" {
 
 # Create (api, web) security group to allow public access
 resource "aws_security_group" "web" {
-    name = "sg_for_web"
+    name = "${var.environment}-Web-SG"
     description = "Allow incoming HTTP connections."
 
     ingress {
@@ -214,13 +204,13 @@ resource "aws_security_group" "web" {
     vpc_id = "${aws_vpc.cats.id}"
 
     tags = {
-        Name = "WebServerSG"
+        Name = "${var.environment} WebServerSG"
     }
 }
 
 # Create (db) security group to allow access only from (api, web) security group
 resource "aws_security_group" "db" {
-    name = "sg_for_db"
+    name = "${var.environment}-DB-SG"
     description = "Allow incoming database connections."
 
     ingress {
