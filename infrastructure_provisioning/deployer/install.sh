@@ -12,7 +12,7 @@ env=$2
 
 case $resource in
   ecr)
-    ecr $env
+    ecr_install $env
   ;;
   helm_charts)
     echo "Going to provision ecr for $env"

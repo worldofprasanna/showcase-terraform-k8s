@@ -2,14 +2,11 @@
 
 set -e
 
-function ecr() {
+. ./deployer/common.sh
+
+function ecr_install() {
+  check_env 'ecr' $1
   env=$1
-  echo "Going to provision ecr for $env"
-  if [[ $env != "stg" ]]
-  then
-    echo "Only available environment is staging - stg"
-    return 1
-  fi
 
   cd ecr
   terraform plan -out plan.out -var-file="../secrets/$env.tfvars"
@@ -23,6 +20,7 @@ function ecr() {
     echo "Ok. Operation cancelled"
     return 1
   fi
+
   if [[ $1 -eq 0 ]]
   then
     echo "ecr provisioned successfully"
@@ -31,4 +29,12 @@ function ecr() {
     echo "some error happened when applying the terraform scripts"
     return 1
   fi
+}
+
+function ecr_destroy() {
+  check_env 'ecr' $1
+  env=$1
+
+  cd ecr
+  terraform destroy -var-file="../secrets/$env.tfvars"
 }
