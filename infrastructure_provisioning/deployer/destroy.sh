@@ -11,13 +11,14 @@ resource=$1
 env=$2
 
 . ./deployer/ecr.sh
+. ./deployer/helm_charts.sh
 
 case $resource in
   ecr)
     ecr_destroy $env
   ;;
   helm_charts)
-    echo "Going to provision ecr for $env"
+    helm_charts_destroy $env
   ;;
   vpc)
     echo "Going to provision vpc for $env"

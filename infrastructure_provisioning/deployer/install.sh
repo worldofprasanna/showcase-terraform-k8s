@@ -9,13 +9,14 @@ resource=$1
 env=$2
 
 . ./deployer/ecr.sh
+. ./deployer/helm_charts.sh
 
 case $resource in
   ecr)
     ecr_install $env
   ;;
   helm_charts)
-    echo "Going to provision ecr for $env"
+    helm_charts_install $env
   ;;
   vpc)
     echo "Going to provision vpc for $env"
@@ -30,7 +31,7 @@ case $resource in
     echo "Going to provision all for $env"
   ;;
   *)
-    echo "Sorry you have given wrong input for resource. Check the usage again"
+    echo "Sorry you have given wrong input for resource. Available resource [ ecr | helm_charts | vpc | rds | eks | all ]"
     echo "Usage: ./deployer/install.sh <resource | all> <env>"
     exit 1
   ;;
