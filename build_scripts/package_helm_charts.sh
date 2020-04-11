@@ -16,18 +16,13 @@ chart_name="cats-$service"
 helm package "charts/$chart_name" -d packaged_charts/
 
 result=`helm plugin list | grep s3`
-if [[ $? -eq 1 ]]
-then
-  echo "Install the helm s3 plugin"
-  apk add git bash
-  helm plugin install https://github.com/hypnoglow/helm-s3.git
-  mkdir ~/.aws
-  cat <<EOT >> ~/.aws/config
+mkdir -p ~/.aws
+cat <<EOT >> ~/.aws/config
 [default]
 region=us-east-1
 EOT
-  helm s3 init s3://stg-cats-helm-chart/charts
-fi
+
+helm s3 init s3://stg-cats-helm-chart/charts
 
 echo "Initialize the helm chart repository"
 helm repo add cats-charts s3://stg-cats-helm-chart/charts

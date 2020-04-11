@@ -22,7 +22,7 @@ jobs:
             echo "Validating helm charts"
   publish_helm_charts:
     docker:
-      - image: alpine/helm:latest
+      - image: wordofprasanna/helm-box:latest
     working_directory: ~/repo
     steps:
       - checkout
