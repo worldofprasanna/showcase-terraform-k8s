@@ -4,22 +4,43 @@ variable "cluster-name" {
 }
 
 variable "vpc_id" {
-  default = "vpc-033a57f3990a8ede3"
   type    = string
 }
 
 variable "public_subnet1_id" {
-  default = "subnet-09f86b35b07f60539"
   type    = string
 }
 
 variable "public_subnet2_id" {
-  default = "subnet-036ab29537294c635"
   type    = string
 }
 
-variable "security_group_id" {
-  default = "sg-0ee25147027b03307"
+variable "web_security_group_id" {
+  type    = string
+}
+
+variable "eks_worker_instance_type" {
+  default = "t3.medium"
+  type    = string
+}
+
+variable "eks_worker_min_nodes" {
+  default = "1"
+  type    = number
+}
+
+variable "eks_worker_max_nodes" {
+  default = "1"
+  type    = number
+}
+
+variable "eks_worker_desired_nodes" {
+  default = "1"
+  type    = number
+}
+
+variable "environment" {
+  default = "stg"
   type    = string
 }
 

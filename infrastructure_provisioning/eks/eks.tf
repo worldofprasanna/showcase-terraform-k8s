@@ -1,5 +1,5 @@
 resource "aws_iam_role" "cats-cluster" {
-  name = "cats-cluster-role"
+  name = "${var.environment}-cats-cluster-role"
 
   assume_role_policy = <<POLICY
 {
@@ -28,11 +28,11 @@ resource "aws_iam_role_policy_attachment" "cats-cluster-AmazonEKSServicePolicy" 
 }
 
 resource "aws_eks_cluster" "cats" {
-  name     = var.cluster-name
+  name     = "${var.environment}-${var.cluster-name}"
   role_arn = aws_iam_role.cats-cluster.arn
 
   vpc_config {
-    security_group_ids = ["${var.security_group_id}"]
+    security_group_ids = ["${var.web_security_group_id}"]
     subnet_ids         = ["${var.public_subnet1_id}", "${var.public_subnet2_id}"]
   }
 
