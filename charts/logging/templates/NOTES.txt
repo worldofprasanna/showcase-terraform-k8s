@@ -1,0 +1,1 @@
+Thank you for installing ELK stack. Details to access the cluster would be updated later.

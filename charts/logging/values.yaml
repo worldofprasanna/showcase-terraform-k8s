@@ -1,0 +1,20 @@
+elasticsearch:
+  antiAffinity: "soft"
+  esJavaOpts: "-Xmx128m -Xms128m"
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "512M"
+    limits:
+      cpu: "1000m"
+      memory: "512M"
+  
+  # Request smaller persistent volumes.
+  volumeClaimTemplate:
+    accessModes: [ "ReadWriteOnce" ]
+    storageClassName: "hostpath"
+    resources:
+      requests:
+        storage: 1G
+  replicas: 1
+  minimumMasterNodes: 1
