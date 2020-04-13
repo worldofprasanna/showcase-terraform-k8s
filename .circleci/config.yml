@@ -19,8 +19,8 @@ jobs:
       - run:
           name: Validate helm charts
           command: |
-            sh build_scripts/lint_helm_scripts.sh api
-            sh build_scripts/lint_helm_scripts.sh web
+            sh build_scripts/lint_helm_charts.sh api
+            sh build_scripts/lint_helm_charts.sh web
   publish_helm_charts:
     docker:
       - image: wordofprasanna/helm-box:latest
