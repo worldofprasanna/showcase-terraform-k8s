@@ -20,14 +20,15 @@ echo "Install the helm s3 plugin"
 result=`helm plugin list | grep s3`
 if [[ $? -eq 1 ]]
 then
+  apk add git bash
   helm plugin install https://github.com/hypnoglow/helm-s3.git
+  helm s3 init s3://stg-cats-helm-chart/charts
 fi
 
 echo "Initialize the helm chart repository"
-helm s3 init s3://stg-cats-helm-chart/charts
 helm repo add cats-charts s3://stg-cats-helm-chart/charts
 
 echo "Push the charts to s3 bucket"
-helm s3 push packaged_charts/$chart_name-*.tgz cats_charts
+helm s3 push packaged_charts/$chart_name-*.tgz cats-charts
 
 echo "Task completed"
