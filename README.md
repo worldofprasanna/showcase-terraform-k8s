@@ -4,7 +4,10 @@
 
 > Infrastructure repository for deploying the cat app
 
-If you want to know about the technologies used, please refer to [Architecture](Architecture.md)
+If you want to know about the requirements against this repo is built take a look here [Requirements](Requirements.md)
+If you want to know about the technologies used, please refer to [Tech Stack](TechStack.md)
+
+Note: The app is a very basic one, but the infrastructure is much more complex and can be scaled easily. This could be an over engineering for such a simple app, but this is just a repository to showcase my take on infrastructure. Though its fully functional and throughly tested, please use it with caution in production applications.
 
 ## Table of Contents
 
