@@ -1,17 +1,22 @@
-# screener
+# Infrastructure as a code
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
 > Infrastructure repository for deploying the cat app
 
-If you want to know about the requirements against this repo is built take a look here [Requirements](Requirements.md)
-If you want to know about the technologies used, please refer to [Tech Stack](TechStack.md)
+## Few points to be noted:
 
-Note: The app is a very basic one, but the infrastructure is much more complex and can be scaled easily. This could be an over engineering for such a simple app, but this is just a repository to showcase my take on infrastructure. Though its fully functional and throughly tested, please use it with caution in production applications.
+1. If you want to know about the requirements against this repo is built take a look here [Requirements](Requirements.md)
+2. If you want to know about the technologies used, please refer to [Tech Stack](TechStack.md)
+3. The app is a very basic one, but the infrastructure is much more complex and can be scaled easily. This could be an over engineering for such a simple app, but this is just a repository to showcase my take on infrastructure. Though its fully functional and throughly tested, please use it with caution in production applications.
+4. This repository contains code for creating [Infrastructure in AWS](infrastructure_provisioning/README.md), [Helm charts](charts/README.md) to deploy applications to k8s, [CI/CD](.circleci/config.yml), [Scripts](infracture_provisioning/deployer/README.md)
+5. This is a public repository and no secrets are stored in the source code. All the secrets are set in the circle ci secret variables.
+5. There is a scope to improve a lot. You can find [here](ThingsToImprove.md)
 
 ## Table of Contents
 
-- [screener](#screener)
+- [Infrastructure as a code](#infrastructure-as-a-code)
+  - [Few points to be noted:](#few-points-to-be-noted)
   - [Table of Contents](#table-of-contents)
   - [Install](#install)
   - [Usage](#usage)
