@@ -6,8 +6,6 @@
 
 If you want to know about the technologies used, please refer to [Architecture](Architecture.md)
 
-Note: CircleCI is used for CI/CD.
-
 ## Table of Contents
 
 - [screener](#screener)
@@ -27,6 +25,7 @@ brew install terraform
 ## Usage
 
 Check the Terraform Guide to run the scripts [here](TerraformGuide.md)
+Note: Replace the <aws-account-id> with your actual id in the corresponding chart's values.yml
 
 1. To create all the resources from scratch
 ```

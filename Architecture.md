@@ -10,5 +10,5 @@ Container Orchestrator: **Kubernetes**
 Package Manager: **Helm**
 Managed Kubernetes: **AWS EKS**
 Logging: **Elasticsearch, Logstash, Kibana**
-Monitoring: **Monit**
+Monitoring: **Prometheus, Grafana**
 Database: **AWS RDS**
