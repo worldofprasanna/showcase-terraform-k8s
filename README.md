@@ -1,6 +1,7 @@
 # Infrastructure as a code
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+[![CircleCI](https://circleci.com/gh/worldofprasanna/showcase-terraform-k8s/tree/master.svg?style=svg)](https://circleci.com/gh/worldofprasanna/showcase-terraform-k8s/tree/master)
 
 > Infrastructure repository for deploying the cat app
 
