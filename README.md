@@ -5,28 +5,31 @@
 
 > Infrastructure repository for deploying the cat app
 
-## Few points to be noted:
-
-1. If you want to know about the requirements against this repo is built take a look here [Requirements](Requirements.md)
-2. If you want to know about the technologies used, please refer to [Tech Stack](TechStack.md)
-3. The app is a very basic one, but the infrastructure is much more complex and can be scaled easily. This could be an over engineering for such a simple app, but this is just a repository to showcase my take on infrastructure. Though its fully functional and throughly tested, please use it with caution in production applications.
-4. This repository contains code for creating [Infrastructure in AWS](infrastructure_provisioning/README.md), [Helm charts](charts/README.md) to deploy applications to k8s, [CI/CD](.circleci/config.yml), [Scripts](infrastructure_provisioning/deployer/README.md)
-5. This is a public repository and no secrets are stored in the source code. All the secrets are set in the circle ci secret variables.
-6. There is a scope to improve a lot. You can find [here](ThingsToImprove.md)
-7. Pipeline for Infrastructure
-![Infrastructure](assets/infrastructure-pipeline.png)
-8. Pipeline for Application (Though it is not opensourced yet)
-![Application](assets/app-pipeline.png)
+The app is a very basic one, but the infrastructure is much more complex. This could be considered as an over-engineering for such a simple app, but this is just a repository to showcase my take on infrastructure. Though its fully functional and throughly tested, please use it with caution in production applications.
 
 ## Table of Contents
 
 - [Infrastructure as a code](#infrastructure-as-a-code)
-  - [Few points to be noted:](#few-points-to-be-noted)
   - [Table of Contents](#table-of-contents)
+  - [Few points to be noted](#few-points-to-be-noted)
   - [Install](#install)
   - [Usage](#usage)
   - [Maintainers](#maintainers)
   - [Contributing](#contributing)
+
+## Few points to be noted
+
+1. If you want to know about the requirements against this repo is built take a look here [Requirements](Requirements.md)
+2. If you want to know about the technologies used, please refer to [Tech Stack](TechStack.md)
+3. This repository contains code for creating [Infrastructure in AWS](infrastructure_provisioning/README.md), [Helm charts](charts/README.md) to deploy applications to k8s, [CI/CD](.circleci/config.yml), [Scripts](infrastructure_provisioning/deployer/README.md)
+4. Pipeline for Infrastructure
+
+![Infrastructure](assets/infrastructure-pipeline.png)
+5. Pipeline for Application (Though it is not opensourced yet)
+
+![Application](assets/app-pipeline.png)
+6. There is a scope to improve a lot. You can find [here](ThingsToImprove.md)
+
 
 ## Install
 
