@@ -11,7 +11,7 @@ metadata:
   namespace: kube-system
 data:
   mapRoles: |
-    - rolearn: ${aws_iam_role.cats-node.arn}
+    - rolearn: ${aws_iam_role.nd-app2-node.arn}
       username: system:node:{{EC2PrivateDNSName}}
       groups:
         - system:bootstrappers
@@ -22,8 +22,8 @@ CONFIGMAPAWSAUTH
 apiVersion: v1
 clusters:
 - cluster:
-    server: ${aws_eks_cluster.cats.endpoint}
-    certificate-authority-data: ${aws_eks_cluster.cats.certificate_authority.0.data}
+    server: ${aws_eks_cluster.nd-app2.endpoint}
+    certificate-authority-data: ${aws_eks_cluster.nd-app2.certificate_authority.0.data}
   name: kubernetes
 contexts:
 - context:

@@ -1,5 +1,5 @@
-resource "aws_iam_role" "cats-cluster" {
-  name = "${var.environment}-cats-cluster-role"
+resource "aws_iam_role" "nd-app2-cluster" {
+  name = "${var.environment}-nd-app2-cluster-role"
 
   assume_role_policy = <<POLICY
 {
@@ -17,19 +17,19 @@ resource "aws_iam_role" "cats-cluster" {
 POLICY
 }
 
-resource "aws_iam_role_policy_attachment" "cats-cluster-AmazonEKSClusterPolicy" {
+resource "aws_iam_role_policy_attachment" "nd-app2-cluster-AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-  role       = aws_iam_role.cats-cluster.name
+  role       = aws_iam_role.nd-app2-cluster.name
 }
 
-resource "aws_iam_role_policy_attachment" "cats-cluster-AmazonEKSServicePolicy" {
+resource "aws_iam_role_policy_attachment" "nd-app2-cluster-AmazonEKSServicePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
-  role       = aws_iam_role.cats-cluster.name
+  role       = aws_iam_role.nd-app2-cluster.name
 }
 
-resource "aws_eks_cluster" "cats" {
+resource "aws_eks_cluster" "nd-app2" {
   name     = "${var.environment}-${var.cluster-name}"
-  role_arn = aws_iam_role.cats-cluster.arn
+  role_arn = aws_iam_role.nd-app2-cluster.arn
 
   vpc_config {
     security_group_ids = ["${var.web_security_group_id}"]
@@ -37,7 +37,7 @@ resource "aws_eks_cluster" "cats" {
   }
 
   depends_on = [
-    aws_iam_role_policy_attachment.cats-cluster-AmazonEKSClusterPolicy,
-    aws_iam_role_policy_attachment.cats-cluster-AmazonEKSServicePolicy,
+    aws_iam_role_policy_attachment.nd-app2-cluster-AmazonEKSClusterPolicy,
+    aws_iam_role_policy_attachment.nd-app2-cluster-AmazonEKSServicePolicy,
   ]
 }
